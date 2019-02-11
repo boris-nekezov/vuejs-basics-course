@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>First Vuejs Application</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-on:input="changeTitle">
+    <p>{{ title }}</p>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'Hello World!'
+        },
+        methods: {
+            // Event is default event object created by javascript
+            changeTitle: function(event){
+                console.log('event: ', event);
+                console.log('event.target: ', event.target);
+                console.log('event.target.value: ', event.target.value);
+                this.title = event.target.value;
+            }
+        }
+    });
+</script>
+</body>
+</html>
