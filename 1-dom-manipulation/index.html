@@ -9,25 +9,26 @@
     <div class="row">
         <div class="col">
             <!-- 4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation" -->
-            <h1></h1>
+            <h1>{{ title }}</h1>
             
             <hr>
             
             <!-- 6. V-on directive. (Create input that will insert as value whatever we type) -->
             <p>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-on:input="updateTitle">
             </p>
         
             <hr>
 
             <!-- 10. Execute method in template syntax -->
-            <p></p>
+            <p>{{ printMessage() }}</p>
 
             <hr>
 
             <p>
                 <!-- 12. We can't use curly braces in any html element attribute -->
-                <!-- <a href="" target="_blank"></a> -->
+                <!-- <a href="{{ linkUrl }}" target="_blank">{{ link }}</a> -->
+                <a v-bind:href="linkUrl" target="_blank">{{ link }}</a>
             </p>
 
             <hr>
@@ -40,35 +41,35 @@
             <hr>
 
             <!-- 14. Use v-once directive to disable re-rendering -->
-            <p></p>
-            <p></p>
+            <p v-once>{{ initialValue }}</p>
+            <p>{{ changeInitialValue() }}</p>
 
             <hr>
 
             <!-- 15. How to Output Raw HTML -->
-            <p></p>
-            <p></p>
+            <!-- <p>{{ linkHtml }}</p> -->
+            <p v-html="linkHtml"></p>
 
             <hr>
 
             <!-- 16. Let's create button that will increase some number with a function -->
-            <p><button class="btn btn-primary" >Increase number</button> Number: </p>
+            <p><button class="btn btn-primary" v-on:click="increase">Increase number</button> Number: <span v-once>{{ number }}</span></p>
 
             <hr>
 
             <!-- 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover. -->
-            <div class="alert alert-primary" >Get coordinates: X:  / Y: </div>
+            <div class="alert alert-primary" v-on:mousemove="updateCoordinates">Get coordinates: X: {{ x }} / Y: {{ y }} </div>
 
             <hr>
 
             <!-- 18.1 Passing your own Arguments with Events -->
-            <p><button class="btn btn-primary" >Increase number by 3</button> Number: </p>
+            <p><button class="btn btn-primary" v-on:click="increaseBy(3, $event)">Increase number by 3</button> Number: {{ number }}</p>
 
             <hr>
 
             <!-- 19.3 Create another area and this time use event modifier -->
             <!-- 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function -->
-            <div class="alert alert-warning" v-on:mousemove="updateCoordinates">
+            <div class="alert alert-warning">
                 Get coordinates: X:  / Y: 
                 <br><br><br>
                 <div class="alert alert-danger" >Mouseover disabled by function</div>
@@ -174,6 +175,52 @@
 </div>
 <!-- /.container -->
 <script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'VueJS Rocks! Part 1. Manipulate the DOM',
+            message: 'I am super cool message!',
+            link: 'VueJS',
+            linkUrl: 'https://vuejs.org/',
+            initialValue: 'I am an initial value!',
+            linkHtml: '<a href="https://www.google.bg/" target="_blank">Google</a>',
+            number: 0,
+            x: 0,
+            y: 0,
+        },
+
+        methods: {
+            updateTitle: function(event){
+                // console.log(event);
+                // console.log(event.target);
+                // console.log(event.target.value);
+                return this.title = event.target.value;
+            },
+
+            printMessage(){
+                return this.message;
+            },
+
+            changeInitialValue: function(){
+                return this.initialValue = 'I am new value!';
+            },
+
+            increase: function(){
+                return this.number++;
+            },
+
+            updateCoordinates: function(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            
+            increaseBy: function(by, event){
+                this.number += by;
+            },
+            
+        }
+        
+    });
 
     /** Topics
      * 1. Vue instance
