@@ -1,0 +1,269 @@
+<html>
+<head>
+    <title>1 Dom Manipulation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app" class="container">
+    <div class="row">
+        <div class="col">
+            <!-- 4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation" -->
+            <h1></h1>
+            
+            <hr>
+            
+            <!-- 6. V-on directive. (Create input that will insert as value whatever we type) -->
+            <p>
+                <input type="text" class="form-control">
+            </p>
+        
+            <hr>
+
+            <!-- 10. Execute method in template syntax -->
+            <p></p>
+
+            <hr>
+
+            <p>
+                <!-- 12. We can't use curly braces in any html element attribute -->
+                <!-- <a href="" target="_blank"></a> -->
+            </p>
+
+            <hr>
+
+            <p>
+                <!--  13. How to bind dynamically something in html attribute -->
+                <a href="" target="_blank"></a>
+            </p>
+
+            <hr>
+
+            <!-- 14. Use v-once directive to disable re-rendering -->
+            <p></p>
+            <p></p>
+
+            <hr>
+
+            <!-- 15. How to Output Raw HTML -->
+            <p></p>
+            <p></p>
+
+            <hr>
+
+            <!-- 16. Let's create button that will increase some number with a function -->
+            <p><button class="btn btn-primary" >Increase number</button> Number: </p>
+
+            <hr>
+
+            <!-- 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover. -->
+            <div class="alert alert-primary" >Get coordinates: X:  / Y: </div>
+
+            <hr>
+
+            <!-- 18.1 Passing your own Arguments with Events -->
+            <p><button class="btn btn-primary" >Increase number by 3</button> Number: </p>
+
+            <hr>
+
+            <!-- 19.3 Create another area and this time use event modifier -->
+            <!-- 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function -->
+            <div class="alert alert-warning" v-on:mousemove="updateCoordinates">
+                Get coordinates: X:  / Y: 
+                <br><br><br>
+                <div class="alert alert-danger" >Mouseover disabled by function</div>
+                <br>
+                <!-- Stop link default behavior -->
+                <a href="" target="_blank"></a>
+                <br><br>
+                <!-- 19.3 Create another area and this time use event modifier -->
+                <div class="alert alert-danger" >Mouseover disabled by event modifier</div>
+            </div>
+
+            <hr>
+
+            <!-- 20.3 Make an input which listens to keyboard event -->
+            <p class="form-inline">
+                <input type="text" class="form-control" > 
+                &nbsp;
+                <!-- here output -->
+   
+            </p>
+
+            <!-- 20.5 Make another input and this time add key modifiers for enter and space -->
+            <p class="form-inline">
+                <!-- 20.7 Update directly in in event argument -->
+                <input type="text" class="form-control" > 
+                &nbsp;
+                <!-- here output -->
+             
+            </p>
+
+            <hr>
+
+            <!-- 21.1 Writing JavaScript Code in the Templates -->
+            <p>
+                <!-- 21.3 Increase counter directly in a button -->
+                <button class="btn btn-success" >Increase counter</button>
+                <button class="btn btn-success" >Decrease counter</button>
+            </p>      
+            <!-- 21.2 We can also write simple js statement in interpolation syntax -->   
+            <p>Number is: </p>
+         
+            <!-- 21.5 We can even  write conditional ternary operator -->
+            <!-- condition ? true : false -->
+            <p></p>
+
+            <hr>
+
+            <!-- 22.1 Using Two-Way-Binding -->
+            <p>
+                <input type="text" class="form-control" >
+                <p> </p>
+            </p>
+
+            <!-- 23.1 Reacting to Changes with Computed Properties -->
+            <p>
+                    <!-- 21.3 Increase counter directly in a button -->
+                    <button class="btn btn-info">Increase counter</button>
+                    <button class="btn btn-info">Decrease counter</button>
+            
+            </p> 
+            <!-- 23.3 Print method -->
+            <p>
+                From methods object
+                Number is
+               
+            </p>
+            <!-- 23.6 Print computed prop -->
+            <p>
+                From computed object
+                Number  is
+              
+            </p>
+            <p>
+                <!-- 23.5.1 Create button that inreases otherCounter -->
+                <button class="btn btn-warning" >Increase otherNumber</button>
+                <!-- Print computed prop -->
+                otherNumber is: 
+            </p>
+
+            <hr>
+
+            <!-- 24.5 Make button the increases watch prop and print it -->
+            <p>
+                <button class="btn btn-danger">Increase watchedProperty</button>
+                <!-- Print computed prop -->
+                watchedProperty is: 
+            </p>
+
+            <hr>
+
+            <!-- 25.1 Saving Time with Shorthands -->
+            <p>
+                <!-- 25.2 Shorthand for v-on -->
+                <button class="btn btn-danger" >Increase watchedProperty</button>
+                <br><br>
+                <!-- 25.4 Shorhand for v-bind -->
+                <a target="_blank"></a>
+            </p>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+<script>
+
+    /** Topics
+     * 1. Vue instance
+     *
+     * 2. El property
+     *
+     * 3. Data property
+     *
+     * 4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation"
+     *
+     * 5. Directives
+     *
+     * 6. V-on directive. (Create input that will insert as value whatever we type)
+     *
+     * 7. Methods property (Create method that will change the value of title)
+     *
+     * 8. Accessing method or property in vue instance (Exlain how to access methods and props)
+     *
+     * 9. What is  event.target.value? (log event.target.value)
+     *
+     * 10. Execute method in template syntax
+     *
+     * 11. Explain why we don't need this or data when we use variable or methods in template syntax
+     *
+     * 12. We can't use curly braces in any html element attribute
+     *
+     * 13. How to bind dynamically something in html attribute
+     *
+     * 14. Use v-once directive to disable re-rendering
+     *
+     * 15. How to Output Raw HTML
+     *
+     * 16. Let's create button that will increase some number with a function
+     *
+     * 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
+     * 17.2. clientX and clientY are default props of event object
+     *
+     * 18.1 Passing your own Arguments with Events
+     * 18.2 $event reserved word
+     *
+     * 19.1 Modifying an Event - with Event Modifiers
+     * 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
+     * 19.3 Create another area and this time use event modifier
+     * 19.4 There a lot modifiers but the second most import is prevent
+     * 19.5 We could also chain them
+     *
+     * 20.1 Listening to Keyboard Events
+     * 20.2 Make variable for the output value
+     * 20.3 Make an input which listens to keyboard event
+     * 20.4 Make some method that print value
+     * 20.5 Make another input and this time add key modifiers for enter and esc
+     * 20.6 Link to key modifiers. We can chain key modifiers
+     * 20.7 Update directly in in event argument
+     * https://vuejs.org/v2/guide/events.html#Key-Modifiers
+     *
+     * 21.1 Writing JavaScript Code in the Templates
+     * 21.2 We can also write simple js statement in interpolation syntax
+     * 21.3 Increase counter directly in a button
+     * 21.4 Multiply counter by 2 in interpolation
+     * 21.5 We can even  write conditional ternary operator
+     *
+     * 22.1 Using Two-Way-Binding
+     * 22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
+     *
+     * 23.1 Reacting to Changes with Computed Properties
+     * 23.2 Create method that prints if it is smaller or greater than 5 and log method
+     * 23.3 Print method
+     * 23.4 Create another number in props
+     * 23.5 Create computed prop with the same logic like in method and log computed
+     * 23.5.1 Create button that inreases otherCounter
+     * 23.6 Print computed prop
+     * 23.7 Data prop is not reactive. We can't do calculation in data property.
+     * 23.8 Everything stored in computed can be used as a prop of data object
+     * 23.9 In computed properties in only executes when they need to and it executes methods every time when virtual DOM is updated
+     *
+     * 24.1 An Alternative to Computed Properties Watching for Changes
+     * 24.2 If you need to run some code when the property is updated and which is not solved by a computed property then
+     * the watch object is for you
+     * It watch when property changes and execute the function with argument the property value
+     * 24.2.1 Create property that is watched
+     * 24.3 Create watch object
+     * 24.4 Watch number and reset after 3 seconds the value of number
+     * 24.5 Make button the increases watch prop and print it
+     *
+     * 25.1 Saving Time with Shorthands
+     * 25.2 Shorthand for v-on
+     * 25.3 Make function that executes on click
+     * 25.4 Shorhand for v-bind
+     */
+
+</script>
+</body>
+</html>
