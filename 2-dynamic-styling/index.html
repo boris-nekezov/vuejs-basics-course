@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>Dynamic styling</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<style>
+    .alert {
+        border: 1px groove gray;
+        user-select: none;
+        cursor: pointer;
+    }
+</style>
+<div id="app" class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Dynamic Styling</h1>
+            <br>
+            <!-- 1. Let's we have an element that we want to toggle some class on click -->
+            <!-- 2. Dynamic class takes as a key name of the class and as value true or false -->
+            <div class="alert" >
+                Toggle class example
+            </div>
+            <!-- IMPORTANT NOTE! It doesn't matter that we have class and then :class again 
+                behind the scenes vuejs will merge all classess we have -->
+
+            <hr>
+
+            <!-- 3. If we want the obj not in the html we can outsource in computed properties -->
+            <!-- 7. We put the obj in :class -->
+            <div
+                class="alert">Change classes from inside
+            </div>
+            
+            <hr>
+
+            <!-- 8. We can also set the value of prop as class -->
+            <div class="alert" >Set the class from a property value
+            </div>
+            <hr>
+  
+            <!-- 10. Make an input and set two-way data binding for that bgColor prop -->
+            <p class="form-inline">
+                <input class="form-control" type="text">
+            </p>
+            <!-- 
+                12. We can also add multiple values by using an array
+                13. Let's add besides the bgColor the obj from 2.
+                14. Show in the inspector classes
+             -->
+             <div class="alert">Using multiple value as classes
+            </div>
+
+            <hr>
+
+            <!-- 16. Style element without using css classes but directly interact with the styles -->
+            <!-- 
+                19. We use obj here as well the name of the style property and its value
+                20. When we have background-color we must wrap it an quotes cause its
+                not a valid property syntax 
+            -->
+            <div class="alert">Style element without using css classes but directly interact with the styles
+            </div>
+            <!-- 21. We can also use it as camel case -->
+            <div
+                class="alert"
+             
+                >Style element without using css classes but directly interact with the styles
+            </div>
+
+            <!-- 18.1 Make inputs for changing the props -->
+            <p class="form-inline">
+                <input type="text" class="form-control" > &nbsp;
+                <input type="text" class="form-control" >
+            </p>      
+
+            <hr>
+
+            <!-- 23. Like in classes we can outsource the obj in computed props -->
+            <div class="alert">Style element without using css classes but directly interact with the styles
+            </div>
+
+            <hr>
+
+           <!-- 25. And of course we can combine multiply styles with the arr syntax -->
+           <div>Myltiple styles with array
+            </div>
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<script>
+    new Vue({
+
+        el: '#app',
+
+        data: {
+            addPrimary: false,
+            // 9. Make another prop fo bgColor
+            bgColor: 'alert-success',
+
+            // 17. Make another props color and height
+            color: 'greenyellow',
+            height: 100
+        },
+
+        // 4. We make computed object 
+
+            // 5. Returns computed property which is fun
+                // 6. that function returns an obj
+
+            // 24. Make another computed prop objStyles and the prev obj there
+        
+    });
+
+/** Topics
+    Link to bootstap classes
+    https://getbootstrap.com/docs/4.3/components/alerts/
+    list of bootstrap alert classes:
+    * alert-primary
+    * alert-secondary
+    * alert-success
+    * alert-danger
+    * alert-warning
+    * alert-info
+    * alert-light
+    * alert-dark
+
+    1. Let's we have an element that we want to toggle some class on click
+    2. Dynamic class takes as a key name of the class and as a value true or false
+    IMPORTANT NOTE! It doesn't matter that we have class and then :class again
+    behind the scenes vuejs will merge all classess we have
+
+    3. If we want the obj not in the html we can outsource inside our vue instance
+    4. We make computed object
+    5. Returns computed property which is fun
+    6. that function returns an obj
+    7. We put the obj in :class
+
+    8. We can also set the value of prop as class
+    9. Make another prop fo bgColor
+    10. Make an input and set two-way data binding for that bgColor prop
+    11. We can write another class name and it will be changed
+
+    12. We can also add multiple values by using an array
+    13. Let's add besides the bgColor the obj from 2.
+    14. Show in the inspector classes
+    15. This give us the flexibility to add multiple classes in a lot of ways
+
+    16. Style element without using css classes but directly interact with the styles
+    17. Make another props color and height
+    18. Bind dynamically with style atribute
+    18.1 Make inputs for changing the props
+    19. We use obj here as well the name of the style property and its value
+    20. When we have background-color we must wrap it an quotes cause its
+    not a valid property syntax
+    21. We can also use it as camel case
+    23. Like in classes we can outsource the obj in computed props
+    24. Make another computed prop objStyles and the prev obj there
+
+    25. And of course we can combine multiply styles with the arr syntax
+    26. IMPORTANT! If we do the styles like this vuejs will automatically
+    prefix them to work in all browsers which support vuejs
+
+    Link to docs:
+    https://vuejs.org/v2/guide/class-and-style.html
+*/
+
+</script>
+</body>
+</html>

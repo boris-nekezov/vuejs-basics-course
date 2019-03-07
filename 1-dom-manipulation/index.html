@@ -222,94 +222,101 @@
         
     });
 
-    /** Topics
-     * 1. Vue instance
-     *
-     * 2. El property
-     *
-     * 3. Data property
-     *
-     * 4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation"
-     *
-     * 5. Directives
-     *
-     * 6. V-on directive. (Create input that will insert as value whatever we type)
-     *
-     * 7. Methods property (Create method that will change the value of title)
-     *
-     * 8. Accessing method or property in vue instance (Exlain how to access methods and props)
-     *
-     * 9. What is  event.target.value? (log event.target.value)
-     *
-     * 10. Execute method in template syntax
-     *
-     * 11. Explain why we don't need this or data when we use variable or methods in template syntax
-     *
-     * 12. We can't use curly braces in any html element attribute
-     *
-     * 13. How to bind dynamically something in html attribute
-     *
-     * 14. Use v-once directive to disable re-rendering
-     *
-     * 15. How to Output Raw HTML
-     *
-     * 16. Let's create button that will increase some number with a function
-     *
-     * 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
-     * 17.2. clientX and clientY are default props of event object
-     *
-     * 18.1 Passing your own Arguments with Events
-     * 18.2 $event reserved word
-     *
-     * 19.1 Modifying an Event - with Event Modifiers
-     * 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
-     * 19.3 Create another area and this time use event modifier
-     * 19.4 There a lot modifiers but the second most import is prevent
-     * 19.5 We could also chain them
-     *
-     * 20.1 Listening to Keyboard Events
-     * 20.2 Make variable for the output value
-     * 20.3 Make an input which listens to keyboard event
-     * 20.4 Make some method that print value
-     * 20.5 Make another input and this time add key modifiers for enter and esc
-     * 20.6 Link to key modifiers. We can chain key modifiers
-     * 20.7 Update directly in in event argument
-     * https://vuejs.org/v2/guide/events.html#Key-Modifiers
-     *
-     * 21.1 Writing JavaScript Code in the Templates
-     * 21.2 We can also write simple js statement in interpolation syntax
-     * 21.3 Increase counter directly in a button
-     * 21.4 Multiply counter by 2 in interpolation
-     * 21.5 We can even  write conditional ternary operator
-     *
-     * 22.1 Using Two-Way-Binding
-     * 22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
-     *
-     * 23.1 Reacting to Changes with Computed Properties
-     * 23.2 Create method that prints if it is smaller or greater than 5 and log method
-     * 23.3 Print method
-     * 23.4 Create another number in props
-     * 23.5 Create computed prop with the same logic like in method and log computed
-     * 23.5.1 Create button that inreases otherCounter
-     * 23.6 Print computed prop
-     * 23.7 Data prop is not reactive. We can't do calculation in data property.
-     * 23.8 Everything stored in computed can be used as a prop of data object
-     * 23.9 In computed properties in only executes when they need to and it executes methods every time when virtual DOM is updated
-     *
-     * 24.1 An Alternative to Computed Properties Watching for Changes
-     * 24.2 If you need to run some code when the property is updated and which is not solved by a computed property then
-     * the watch object is for you
-     * It watch when property changes and execute the function with argument the property value
-     * 24.2.1 Create property that is watched
-     * 24.3 Create watch object
-     * 24.4 Watch number and reset after 3 seconds the value of number
-     * 24.5 Make button the increases watch prop and print it
-     *
-     * 25.1 Saving Time with Shorthands
-     * 25.2 Shorthand for v-on
-     * 25.3 Make function that executes on click
-     * 25.4 Shorhand for v-bind
-     */
+/** Topics
+    1. Vue instance
+
+    2. El property
+
+    3. Data property
+
+    4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation"
+
+    5. Directives
+
+    6. V-on directive. (Create input that will insert as value whatever we type)
+
+    7. Methods property (Create method that will change the value of title)
+
+    8. Accessing method or property in vue instance (Exlain how to access methods and props)
+
+    9. What is  event.target.value? (log event.target.value)
+
+    10. Execute method in template syntax
+
+    11. Explain why we don't need this or data when we use variable or methods in template syntax
+
+    12. We can't use curly braces in any html element attribute
+
+    13. How to bind dynamically something in html attribute
+
+    14. Use v-once directive to disable re-rendering
+
+    15. How to Output Raw HTML
+
+    16. Let's create button that will increase some number with a function
+
+    17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
+    17.2. clientX and clientY are default props of event object
+
+    18.1 Passing your own Arguments with Events
+    18.2 $event reserved word
+
+    19.1 Modifying an Event - with Event Modifiers
+    19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
+    19.3 Create another area and this time use event modifier
+    19.4 There a lot modifiers but the second most import is prevent
+    19.5 We could also chain them
+
+    20.1 Listening to Keyboard Events
+    20.2 Make variable for the output value
+    20.3 Make an input which listens to keyboard event
+    20.4 Make some method that print value
+    20.5 Make another input and this time add key modifiers for enter and esc
+    20.6 Link to key modifiers. We can chain key modifiers
+    20.7 Update directly in in event argument
+    https://vuejs.org/v2/guide/events.html#Key-Modifiers
+
+    21.1 Writing JavaScript Code in the Templates
+    21.2 We can also write simple js statement in interpolation syntax
+    21.3 Increase counter directly in a button
+    21.4 Multiply counter by 2 in interpolation
+    21.5 We can even  write conditional ternary operator
+
+    22.1 Using Two-Way-Binding
+    22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
+
+    23.1 Reacting to Changes with Computed Properties
+    23.2 Create method that prints if it is smaller or greater than 5 and log method
+    23.3 Print method
+    23.4 Create another number in props
+    23.5 Create computed prop with the same logic like in method and log computed
+    23.5.1 Create button that inreases otherCounter
+    23.6 Print computed prop
+    23.7 Data prop is not reactive. We can't do calculation in data property.
+    23.8 Everything stored in computed can be used as a prop of data object
+    23.9 In computed properties in only executes when they need to and it executes methods every time when virtual DOM is updated
+
+    24.1 An Alternative to Computed Properties Watching for Changes
+    24.2 If you need to run some code when the property is updated and which is not solved by a computed property then
+    the watch object is for you
+    It watch when property changes and execute the function with argument the property value
+    24.2.1 Create property that is watched
+    24.3 Create watch object
+    24.4 Watch number and reset after 3 seconds the value of number
+    24.5 Make button the increases watch prop and print it
+
+    25.1 Saving Time with Shorthands
+    25.2 Shorthand for v-on
+    25.3 Make function that executes on click
+    25.4 Shorhand for v-bind
+
+    Docs links:
+    https://vuejs.org/v2/guide/
+    https://vuejs.org/v2/guide/syntax.html
+    https://vuejs.org/v2/guide/events.html
+    https://vuejs.org/v2/guide/computed.html
+    
+*/
 
 </script>
 </body>
