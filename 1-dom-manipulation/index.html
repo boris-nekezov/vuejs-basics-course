@@ -69,8 +69,8 @@
 
             <!-- 19.3 Create another area and this time use event modifier -->
             <!-- 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function -->
-            <div class="alert alert-warning">
-                Get coordinates: X:  / Y: 
+            <div class="alert alert-warning"  v-on:mousemove="updateCoordinates">
+                Get coordinates: X: {{ x }}  / Y: {{ y }} 
                 <br><br><br>
                 <div class="alert alert-danger" >Mouseover disabled by function</div>
                 <br>
