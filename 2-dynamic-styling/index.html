@@ -19,9 +19,12 @@
             <br>
             <!-- 1. Let's we have an element that we want to toggle some class on click -->
             <!-- 2. Dynamic class takes as a key name of the class and as value true or false -->
-            <div class="alert" >
+            <div class="alert"     
+                :class="{'alert-primary': addPrimary}">
                 Toggle class example
             </div>
+            <button @click="addPrimary = !addPrimary">Toggle Class</button>
+
             <!-- IMPORTANT NOTE! It doesn't matter that we have class and then :class again 
                 behind the scenes vuejs will merge all classess we have -->
 
@@ -30,13 +33,14 @@
             <!-- 3. If we want the obj not in the html we can outsource in computed properties -->
             <!-- 7. We put the obj in :class -->
             <div
-                class="alert">Change classes from inside
+                class="alert"
+                :class="computedClasses">Change classes from inside
             </div>
             
             <hr>
 
             <!-- 8. We can also set the value of prop as class -->
-            <div class="alert" >Set the class from a property value
+            <div class="alert" :class="bgColor">Set the class from a property value
             </div>
             <hr>
   
@@ -108,6 +112,14 @@
             color: 'greenyellow',
             height: 100
         },
+
+        computed: {
+            computedClasses: function(){
+                return   {
+                    'alert-primary': this.addPrimary
+                }
+            } 
+        }
 
         // 4. We make computed object 
 

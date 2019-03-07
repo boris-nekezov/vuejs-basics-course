@@ -72,31 +72,35 @@
             <div class="alert alert-warning"  v-on:mousemove="updateCoordinates">
                 Get coordinates: X: {{ x }}  / Y: {{ y }} 
                 <br><br><br>
-                <div class="alert alert-danger" >Mouseover disabled by function</div>
+                <div class="alert alert-danger" v-on:mousemove="disableMove">Mouseover disabled by function</div>
                 <br>
                 <!-- Stop link default behavior -->
-                <a href="" target="_blank"></a>
+                <a v-bind:href="linkUrl" target="_blank" v-on:click.prevent.stop>Google</a>
                 <br><br>
                 <!-- 19.3 Create another area and this time use event modifier -->
-                <div class="alert alert-danger" >Mouseover disabled by event modifier</div>
+                <div class="alert alert-danger" v-on:mousemove.stop>Mouseover disabled by event modifier</div>
             </div>
 
             <hr>
 
             <!-- 20.3 Make an input which listens to keyboard event -->
             <p class="form-inline">
-                <input type="text" class="form-control" > 
+                <input type="text" class="form-control" v-on:keyup="updateOutput"> 
                 &nbsp;
                 <!-- here output -->
-   
+                {{ output }}
             </p>
 
             <!-- 20.5 Make another input and this time add key modifiers for enter and space -->
             <p class="form-inline">
                 <!-- 20.7 Update directly in in event argument -->
-                <input type="text" class="form-control" > 
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    v-on:keyup.enter.esc="output = $event.target.value"> 
                 &nbsp;
                 <!-- here output -->
+                {{ output }}
              
             </p>
 
@@ -105,57 +109,60 @@
             <!-- 21.1 Writing JavaScript Code in the Templates -->
             <p>
                 <!-- 21.3 Increase counter directly in a button -->
-                <button class="btn btn-success" >Increase counter</button>
-                <button class="btn btn-success" >Decrease counter</button>
+                <button class="btn btn-success" 
+                    v-on:click="number++">Increase counter</button>
+                
+                <button class="btn btn-success" 
+                    v-on:click="number--">Decrease counter</button>
             </p>      
             <!-- 21.2 We can also write simple js statement in interpolation syntax -->   
-            <p>Number is: </p>
+            <p>Number is: {{ number * 2}}</p>
          
             <!-- 21.5 We can even  write conditional ternary operator -->
             <!-- condition ? true : false -->
-            <p></p>
+            <p>{{ number * 2 > 5 ? 'greater than 5' : 'smaller than 5' }}</p>
 
             <hr>
 
             <!-- 22.1 Using Two-Way-Binding -->
             <p>
-                <input type="text" class="form-control" >
-                <p> </p>
+                <input type="text" class="form-control" v-model="name" >
+                <p>{{ name }}</p>
             </p>
 
             <!-- 23.1 Reacting to Changes with Computed Properties -->
             <p>
                     <!-- 21.3 Increase counter directly in a button -->
-                    <button class="btn btn-info">Increase counter</button>
-                    <button class="btn btn-info">Decrease counter</button>
+                    <button class="btn btn-info" v-on:click="number++">Increase counter</button>
+                    <button class="btn btn-info" v-on:click="number--">Decrease counter</button>
             
             </p> 
             <!-- 23.3 Print method -->
             <p>
                 From methods object
-                Number is
-               
+                Number is {{ number }}
+               {{ checkNumberFromMethod() }}
             </p>
             <!-- 23.6 Print computed prop -->
             <p>
                 From computed object
                 Number  is
-              
+                {{ checkNumberFromComputed }}
             </p>
             <p>
                 <!-- 23.5.1 Create button that inreases otherCounter -->
-                <button class="btn btn-warning" >Increase otherNumber</button>
+                <button class="btn btn-warning" v-on:click="anotherNumber++">Increase otherNumber</button>
                 <!-- Print computed prop -->
-                otherNumber is: 
+                otherNumber is: {{ anotherNumber }}
             </p>
 
             <hr>
 
             <!-- 24.5 Make button the increases watch prop and print it -->
             <p>
-                <button class="btn btn-danger">Increase watchedProperty</button>
+                <button class="btn btn-danger" v-on:click="watchedNumber++">Increase watchedProperty</button>
                 <!-- Print computed prop -->
-                watchedProperty is: 
+                watchedProperty is: {{ watchedNumber }}
             </p>
 
             <hr>
@@ -163,10 +170,11 @@
             <!-- 25.1 Saving Time with Shorthands -->
             <p>
                 <!-- 25.2 Shorthand for v-on -->
-                <button class="btn btn-danger" >Increase watchedProperty</button>
+                <button class="btn btn-danger" @click="watchedNumber++">Increase watchedProperty</button>
                 <br><br>
+                watchedProperty is: {{ watchedNumber }}
                 <!-- 25.4 Shorhand for v-bind -->
-                <a target="_blank"></a>
+                <a target="_blank" :href="linkUrl">some link</a>
             </p>
         </div>
         <!-- /.col -->
@@ -187,6 +195,27 @@
             number: 0,
             x: 0,
             y: 0,
+            output: '',
+            name: "Boris",
+            anotherNumber: 0,
+            watchedNumber: 0,
+        },
+
+        computed: {
+            checkNumberFromComputed: function(){
+                console.log('computed!');
+                return this.number > 5 ? 'greater than 5' : 'smaller than 5'; 
+            }
+        },
+
+        watch: {
+            watchedNumber: function(){
+                console.log('watched!');
+                var vm = this;
+                setInterval(function(){
+                    vm.watchedNumber = 0;
+                }, 3000);
+            }
         },
 
         methods: {
@@ -217,6 +246,19 @@
             increaseBy: function(by, event){
                 this.number += by;
             },
+
+            disableMove: function(event){
+                event.stopPropagation();
+            },
+
+            updateOutput: function(e){
+                this.output = e.target.value;
+            },
+
+            checkNumberFromMethod: function(){
+                console.log('Methods!');
+                return this.number > 5 ? 'greater than 5' : 'smaller than 5'; 
+            }
             
         }
         
