@@ -35,7 +35,8 @@
     Until now we worked in a single html file whiched contains
     all stuff in one html, template, vue instance and styles.
     This setup works for very small and simple applications.
-    It's not a setup that you will use for medium size.
+    It's not a setup that you will use for medium and large
+    applicaitons.
 
     We will move the things that we've learned into a different
     set up. We will dive into making bigger applications with
@@ -107,6 +108,9 @@
     What is Vue CLI? Vue CLI is Standard Tooling for Vue.js Development.
     It fetches Vuejs project templates. 
 
+    Vue CLI 3 official docs:
+    https://cli.vuejs.org/
+
     !!! WORKSHOP HERE !!!
     9. Install Vue CLI 3:
     npm install -g @vue/cli  
@@ -118,13 +122,22 @@
     If you are on Windows using Git Bash with minTTY, the interactive
     prompts will not work. 
     You must launch the command as: 
+
     winpty vue.cmd create hello-world 
+
     If you however want to still use the: 
     vue create hello-world syntax, 
     you can alias the command by adding the following line to your
     ~/.bashrc file and add the following comand.
 
+    cd ~
+    vim .bashrc
     alias vue='winpty vue.cmd' 
+    
+    to save and exit:
+    ESC 
+    :wq
+    y
     
     You will need to restart your Git Bash terminal session to pull in
     the updated bashrc file.
@@ -210,9 +223,6 @@
     15.3 And then we've got some possible styling we want 
 
     15.4 We can remove the div#app without problem since we have it index.html
-
-    Vue CLI 3 official docs:
-    https://cli.vuejs.org/
     
 */
 
