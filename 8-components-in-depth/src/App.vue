@@ -1,32 +1,12 @@
 <template>
   <div id="app">
-    {{ msg }}
-    <AppHeader></AppHeader>
-    <app-main></app-main>
-    <AppFooter></AppFooter>
+    <h1>Components in depth</h1>
   </div>
 </template>
 
 <script>
-
-
-import AppHeader from './components/AppHeader.vue';
-import AppMain from './components/AppMain.vue';
-import AppFooter from './components/AppFooter.vue';
-
-
 export default {
   name: 'app',
-  data: function() {
-    return {
-      msg: 'Some message!'
-    }
-  },
-  components: {
-    AppHeader: AppHeader,
-    AppMain: AppMain,
-    AppFooter: AppFooter
-  }
 }
 /** Topics
   Don't use global components in medium or big apps.
