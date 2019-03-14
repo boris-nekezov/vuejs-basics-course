@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Vuejs component</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app" class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Vuejs component</h1>
+            <widget></widget>
+            <widget></widget>
+            <widget></widget>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<script>
+
+// 2.2 To create a reusable component we have to register it with vue component
+// This is also called global registered component
+Vue.component('widget', {
+    template: '<div class="alert alert-primary"><h1>This is widget that will be used on several places</h1></div>'
+});
+
+var vm =  new Vue({
+    el: '#app'
+});
+
+/** Topics
+     1.1 What if we want to create reusable component
+     1.2 To use this template on multiple places
+     1.3 Maybe it's something complex that you want to display on 
+     several place
+     1.4 That could be some widget
+
+     2.2 To create a reusable component we have to register it with Vue.component();
+     2.3 This allows us to create a new component which we can reuse all my other
+    vue instances and all the templates of this instances  Vue.component(); takes
+    as 1st argument the selector of the component and the 2nd argument is a js
+    object which is similar to object we pass in the vue instance but not equal
+    for example data is used differently
+
+    Link to documentation about components
+    https://vuejs.org/v2/guide/components.html
+    
+*/
+
+</script>
+</body>
+</html>

@@ -14,32 +14,32 @@
             <h1>Conditionals and rendering lists</h1>
 
             <!-- 1.1 V-if and v-else make some boolean var and switch its val on click -->
-            <div class="alert alert-primary" >
+            <div class="alert alert-primary" v-if="display">
                 This is div that will be visible if display is <span>true</span>
             </div>
-            <div class="alert alert-success">
+            <div class="alert alert-success" v-else>
                 This is another div that will be visible if display is <span>false</span>
             </div>
-            <button class="btn btn-primary">Switch between divs</button>
+            <button class="btn btn-primary" @click="display = !display">Switch between divs</button>
 
             <hr>
 
             <!-- 2.1 V-else if since version 2.1 or highter there is directive v-else-if as well -->
-            <div class="alert alert-success">A</div>
-            <div class="alert alert-danger">B</div>
-            <div class="alert alert-warning">C</div>
+            <div class="alert alert-success" v-if="a">A</div>
+            <div class="alert alert-danger" v-else-if="b">B</div>
+            <div class="alert alert-warning" v-else>C</div>
 
-            <button class="btn btn-success" >Swtch A: </button>
-            <button class="btn btn-danger" >Swtch B: </button>
+            <button class="btn btn-success" @click="a = !a">Swtch A: {{ a }}</button>
+            <button class="btn btn-danger" @click="b = !b">Swtch B: {{ b }}</button>
             
             <hr>
 
             <!-- 3.1 We can also use conditionals with the template html 5 tag -->
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" @click="display = !display">
                 Display elements inside template
             </button>
             <br><br>
-            <template>
+            <template v-if="display">
                 <div class="alert alert-info">This is div inside html5 template tag</div>
                 <div class="alert alert-light">This is div inside html5 template tag</div>
                 <div class="alert alert-dark">This is div inside html5 template tag</div>
@@ -48,33 +48,35 @@
             <hr>
 
             <!-- 4.1 V-show - use it when you don't want to remove the el from -->
-            <button class="btn btn-primary">Hide element</button>
+            <button class="btn btn-primary" @click="show = !show">Hide element</button>
             <br><br>
-            <div class="alert alert-primary">Hide element</div>
+            <div class="alert alert-primary" v-show="show">Hide element</div>
 
             <hr>
             <!-- 5.1 Render lists with v-for -->
             <ul class="list-group">
-                <li class="list-group-item">
-                    Value: 
+                <li class="list-group-item" 
+                    v-for="(language, index) in languages">
+                    Value: {{ language }} 
                     /
-                    Index: 
+                    Index: {{ index }}
                 </li>
             </ul>
 
             <hr>
 
             <!-- 6.1 When you different els you want to loop use template -->
-            <template>
-                <h2>Language: </h2>
-                <p>Index: </p>
+            <template v-for="(language, index) in languages">
+                <h2>Language: {{ language }}</h2>
+                <p>Index: {{ index }}</p>
             </template>
 
             <!-- 7.1 You can also loop through an object on arr -->
             <ul class="list-group">
-                <li class="list-group-item list-group-item-success">
-                    <div class="alert alert-warning">
-                         => :          
+                <li class="list-group-item list-group-item-success" 
+                    v-for="(creator, index) in creators">
+                    <div v-for="(value, key, index) in creator" class="alert alert-warning">
+                        {{ index }} => {{ key }}: {{ value }}         
                     </div>
                 </li>
             </ul>
@@ -82,20 +84,22 @@
             <hr>
 
             <!-- 8.1 How to output list of numbers -->
-            <span style="margin: 10px" class="badge badge-primary"></span>
+            <span style="margin: 10px" class="badge badge-primary" v-for="number in 10">{{ number }}</span>
   
             <hr>
 
             <!-- 9.1 We can change later the data listed by v-for -->
-            <button class="btn btn-info">Add New Language</button> 
+            <button class="btn btn-info" @click="languages.push('Ruby')">Add New Language</button> 
             <br><br>
             <ul class="list-group">
                     <!-- 9.2 To avoid bugs when update els in arr and preserve the position 
                         of the element we have to add unique key -->
-                    <li class="list-group-item list-group-item-info">
-                        Value: 
+                    <li class="list-group-item list-group-item-info" 
+                        v-for="(language, index) in languages"
+                        :key="language">
+                        Value: {{ language }} 
                         /
-                        Index: 
+                        Index: {{ index }}
                     </li>
             </ul>
 

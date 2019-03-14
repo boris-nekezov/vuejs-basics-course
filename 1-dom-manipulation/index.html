@@ -15,70 +15,69 @@
             
             <!-- 6. V-on directive. (Create input that will insert as value whatever we type) -->
             <p>
-                <input type="text" class="form-control" v-on:input="updateTitle">
+                <input type="text" class="form-control" v-on:input="changeTitle">
             </p>
         
             <hr>
 
             <!-- 10. Execute method in template syntax -->
-            <p>{{ printMessage() }}</p>
+            <p>{{ printAlert() }}</p>
 
             <hr>
 
             <p>
                 <!-- 12. We can't use curly braces in any html element attribute -->
-                <!-- <a href="{{ linkUrl }}" target="_blank">{{ link }}</a> -->
-                <a v-bind:href="linkUrl" target="_blank">{{ link }}</a>
+                <!-- <a href="{{ link }}" target="_blank">{{ linkText }}</a> -->
             </p>
 
             <hr>
 
             <p>
                 <!--  13. How to bind dynamically something in html attribute -->
-                <a href="" target="_blank"></a>
+                <a v-bind:href="link" target="_blank">{{ linkText }}</a>
             </p>
 
             <hr>
 
             <!-- 14. Use v-once directive to disable re-rendering -->
-            <p v-once>{{ initialValue }}</p>
+            <p v-once>{{ vonceDemo }}</p>
             <p>{{ changeInitialValue() }}</p>
 
             <hr>
 
             <!-- 15. How to Output Raw HTML -->
-            <!-- <p>{{ linkHtml }}</p> -->
+            <p>{{ linkHtml }}</p>
             <p v-html="linkHtml"></p>
 
             <hr>
 
             <!-- 16. Let's create button that will increase some number with a function -->
-            <p><button class="btn btn-primary" v-on:click="increase">Increase number</button> Number: <span v-once>{{ number }}</span></p>
+            <p><button class="btn btn-primary" v-on:click="increase">Increase number</button> Number: {{ number }}</p>
 
             <hr>
 
             <!-- 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover. -->
-            <div class="alert alert-primary" v-on:mousemove="updateCoordinates">Get coordinates: X: {{ x }} / Y: {{ y }} </div>
+            <div class="alert alert-primary" v-on:mousemove="updateCoordinates">Get coordinates: X: {{ x }} / Y: {{ y }}</div>
 
             <hr>
 
             <!-- 18.1 Passing your own Arguments with Events -->
-            <p><button class="btn btn-primary" v-on:click="increaseBy(3, $event)">Increase number by 3</button> Number: {{ number }}</p>
+            <p><button class="btn btn-primary" v-on:click="increaseWithArgument(3, $event)">Increase number by 3</button> Number: {{ number }}</p>
 
             <hr>
 
             <!-- 19.3 Create another area and this time use event modifier -->
             <!-- 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function -->
-            <div class="alert alert-warning"  v-on:mousemove="updateCoordinates">
-                Get coordinates: X: {{ x }}  / Y: {{ y }} 
+            <div class="alert alert-warning" v-on:mousemove="updateCoordinates">
+                Get coordinates: X: {{ x }} / Y: {{ y }}
                 <br><br><br>
-                <div class="alert alert-danger" v-on:mousemove="disableMove">Mouseover disabled by function</div>
+                <div class="alert alert-danger" v-on:mousemove="disableMousemove">Mouseover disabled by function</div>
                 <br>
                 <!-- Stop link default behavior -->
-                <a v-bind:href="linkUrl" target="_blank" v-on:click.prevent.stop>Google</a>
+                <a v-bind:href="link" target="_blank" v-on:click.prevent>{{ linkText }}</a>
                 <br><br>
                 <!-- 19.3 Create another area and this time use event modifier -->
-                <div class="alert alert-danger" v-on:mousemove.stop>Mouseover disabled by event modifier</div>
+                <div class="alert alert-danger" v-on:mousemove.stop.prevent>Mouseover disabled by event modifier</div>
             </div>
 
             <hr>
@@ -89,19 +88,16 @@
                 &nbsp;
                 <!-- here output -->
                 {{ output }}
+   
             </p>
 
             <!-- 20.5 Make another input and this time add key modifiers for enter and space -->
             <p class="form-inline">
                 <!-- 20.7 Update directly in in event argument -->
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    v-on:keyup.enter.esc="output = $event.target.value"> 
+                <input type="text" class="form-control" v-on:keyup.enter.esc="output = $event.target.value"> 
                 &nbsp;
                 <!-- here output -->
                 {{ output }}
-             
             </p>
 
             <hr>
@@ -109,25 +105,22 @@
             <!-- 21.1 Writing JavaScript Code in the Templates -->
             <p>
                 <!-- 21.3 Increase counter directly in a button -->
-                <button class="btn btn-success" 
-                    v-on:click="number++">Increase counter</button>
-                
-                <button class="btn btn-success" 
-                    v-on:click="number--">Decrease counter</button>
+                <button class="btn btn-success" v-on:click="number++">Increase counter</button>
+                <button class="btn btn-success" v-on:click="number--">Decrease counter</button>
             </p>      
             <!-- 21.2 We can also write simple js statement in interpolation syntax -->   
-            <p>Number is: {{ number * 2}}</p>
+            <p>Number is: {{ number * 2 }}</p>
          
             <!-- 21.5 We can even  write conditional ternary operator -->
             <!-- condition ? true : false -->
-            <p>{{ number * 2 > 5 ? 'greater than 5' : 'smaller than 5' }}</p>
+            <p>{{ number * 2 > 10 ? 'number is bigger than 10 or equal to it' : 'number is smaller than 10' }}</p>
 
             <hr>
 
             <!-- 22.1 Using Two-Way-Binding -->
             <p>
-                <input type="text" class="form-control" v-model="name" >
-                <p>{{ name }}</p>
+                <input type="text" class="form-control" v-model="name">
+                <p>{{ name }} </p>
             </p>
 
             <!-- 23.1 Reacting to Changes with Computed Properties -->
@@ -140,29 +133,29 @@
             <!-- 23.3 Print method -->
             <p>
                 From methods object
-                Number is {{ number }}
-               {{ checkNumberFromMethod() }}
+                Number {{ number }} is
+                {{ checkNumFromMethods() }}
             </p>
             <!-- 23.6 Print computed prop -->
             <p>
                 From computed object
-                Number  is
-                {{ checkNumberFromComputed }}
+                Number {{ number }} is
+                {{ checkNumFromComputed }}
             </p>
             <p>
                 <!-- 23.5.1 Create button that inreases otherCounter -->
-                <button class="btn btn-warning" v-on:click="anotherNumber++">Increase otherNumber</button>
+                <button class="btn btn-warning" v-on:click="otherNumber++">Increase otherNumber</button>
                 <!-- Print computed prop -->
-                otherNumber is: {{ anotherNumber }}
+                otherNumber is: {{ otherNumber }}
             </p>
 
             <hr>
 
             <!-- 24.5 Make button the increases watch prop and print it -->
             <p>
-                <button class="btn btn-danger" v-on:click="watchedNumber++">Increase watchedProperty</button>
+                <button class="btn btn-danger" v-on:click="watchedProperty++">Increase watchedProperty</button>
                 <!-- Print computed prop -->
-                watchedProperty is: {{ watchedNumber }}
+                watchedProperty is: {{ watchedProperty }}
             </p>
 
             <hr>
@@ -170,11 +163,10 @@
             <!-- 25.1 Saving Time with Shorthands -->
             <p>
                 <!-- 25.2 Shorthand for v-on -->
-                <button class="btn btn-danger" @click="watchedNumber++">Increase watchedProperty</button>
+                <button class="btn btn-danger" @click="watchedProperty++">Increase watchedProperty</button>
                 <br><br>
-                watchedProperty is: {{ watchedNumber }}
                 <!-- 25.4 Shorhand for v-bind -->
-                <a target="_blank" :href="linkUrl">some link</a>
+                <a :href="link" target="_blank">{{ linkText }}</a>
             </p>
         </div>
         <!-- /.col -->
@@ -183,182 +175,223 @@
 </div>
 <!-- /.container -->
 <script>
+    // 1. Vue instance
     new Vue({
+
+        // 2. El property
         el: '#app',
+
+        // 3. Data property
         data: {
-            title: 'VueJS Rocks! Part 1. Manipulate the DOM',
-            message: 'I am super cool message!',
-            link: 'VueJS',
-            linkUrl: 'https://vuejs.org/',
-            initialValue: 'I am an initial value!',
-            linkHtml: '<a href="https://www.google.bg/" target="_blank">Google</a>',
+            title: 'Vuejs bacics. Part 1 - Manipulating the DOM',
+
+            message: 'VueJS rocks! I am returned after execution of this method!',
+
+            // 12. Create google url and link text
+            link: 'https://vuejs.org/',
+            linkText: 'VueJS Official Website',
+
+            // 14.1 Use v-once directive to disable re-rendering
+            vonceDemo: 'This is the initial value!',
+
+            // 15.1 How to Output Raw HTML
+            linkHtml: '<a href="https://vuejs.org/" target="_blank">VueJS Official Website</a>',
+
+            // 16.1 Let's create button that will increase some number with a function
             number: 0,
+
+            // 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
             x: 0,
             y: 0,
+
+            // 20.2 Make variable for the output value
             output: '',
-            name: "Boris",
-            anotherNumber: 0,
-            watchedNumber: 0,
+
+            // 22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
+            name:  'Boris',
+
+            // 23.4 Create another number in props
+            otherNumber: 0,
+
+            // 24.2.1 Create property that is watched
+            watchedProperty: 0,
         },
 
+        // 23.5 Create computed prop with the same logic like in method and log computed
         computed: {
-            checkNumberFromComputed: function(){
-                console.log('computed!');
-                return this.number > 5 ? 'greater than 5' : 'smaller than 5'; 
+            checkNumFromComputed: function(){
+                console.log('Computed Object!');
+                return this.number > 5 ? 'Greater than 5' : 'Smaller than 5';
             }
         },
 
+        // 24.3 Create watch object
         watch: {
-            watchedNumber: function(){
-                console.log('watched!');
+            // 24.4 Watch number and reset after 3 seconds the value of number
+            watchedProperty: function(value) {
+                console.log('Watch!');
+
+                // 25. This is a closure so we have to store our vue instance in a variable
                 var vm = this;
-                setInterval(function(){
-                    vm.watchedNumber = 0;
+                setTimeout(function(){
+                    vm.watchedProperty = 0;
                 }, 3000);
+
             }
         },
 
+        // 7. Methods property
         methods: {
-            updateTitle: function(event){
-                // console.log(event);
-                // console.log(event.target);
-                // console.log(event.target.value);
-                return this.title = event.target.value;
+            // Event is default event object created by javascript
+            changeTitle: function(event){
+                // 8. Accessing method or property in vue instance
+                // 9. What is  event.target.value?
+                this.title = event.target.value;
+                console.log('event: ', event);
+                console.log('event.target: ', event.target);
+                console.log('event.target.value: ', event.target.value);
             },
 
-            printMessage(){
+            // 10. Execute method in template syntax
+            printAlert: function(){
                 return this.message;
             },
 
+            // 14.2 Use v-once directive to disable re-rendering
             changeInitialValue: function(){
-                return this.initialValue = 'I am new value!';
+                this.vonceDemo = 'The initial value is changed!';
+                return this.vonceDemo;
             },
 
+            // 16.3 Let's create button that will increase some number with a function
             increase: function(){
-                return this.number++;
+                this.number++;
             },
 
+            // 17.3 How to get Get Event Data from the Event Object. Get coordinates on hover.
             updateCoordinates: function(event){
                 this.x = event.clientX;
                 this.y = event.clientY;
             },
-            
-            increaseBy: function(by, event){
+
+            // 18.1 Passing your own Arguments with Events
+            increaseWithArgument: function(by, event) {
                 this.number += by;
+                console.log(event);
             },
 
-            disableMove: function(event){
-                event.stopPropagation();
+            // 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
+            disableMousemove: function(e){
+                e.stopPropagation();
             },
 
+            // 20.3 Make some method that log msg
             updateOutput: function(e){
-                this.output = e.target.value;
+                return this.output = e.target.value;
             },
 
-            checkNumberFromMethod: function(){
-                console.log('Methods!');
-                return this.number > 5 ? 'greater than 5' : 'smaller than 5'; 
+            // 23.1 Reacting to Changes with Computed Properties
+            // 23.2 Create method that prints if it is smaller or greater than 5 and log method
+            checkNumFromMethods: function(){
+                console.log('Methods Object!');
+                return this.number > 5 ? 'Greater than 5' : 'Smaller than 5';
+            },
+
+            alertNumber: function(){
+                alert('Number is: ' + this.number);
             }
-            
+
         }
-        
     });
 
-/** Topics
-    1. Vue instance
-
-    2. El property
-
-    3. Data property
-
-    4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation"
-
-    5. Directives
-
-    6. V-on directive. (Create input that will insert as value whatever we type)
-
-    7. Methods property (Create method that will change the value of title)
-
-    8. Accessing method or property in vue instance (Exlain how to access methods and props)
-
-    9. What is  event.target.value? (log event.target.value)
-
-    10. Execute method in template syntax
-
-    11. Explain why we don't need this or data when we use variable or methods in template syntax
-
-    12. We can't use curly braces in any html element attribute
-
-    13. How to bind dynamically something in html attribute
-
-    14. Use v-once directive to disable re-rendering
-
-    15. How to Output Raw HTML
-
-    16. Let's create button that will increase some number with a function
-
-    17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
-    17.2. clientX and clientY are default props of event object
-
-    18.1 Passing your own Arguments with Events
-    18.2 $event reserved word
-
-    19.1 Modifying an Event - with Event Modifiers
-    19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
-    19.3 Create another area and this time use event modifier
-    19.4 There a lot modifiers but the second most import is prevent
-    19.5 We could also chain them
-
-    20.1 Listening to Keyboard Events
-    20.2 Make variable for the output value
-    20.3 Make an input which listens to keyboard event
-    20.4 Make some method that print value
-    20.5 Make another input and this time add key modifiers for enter and esc
-    20.6 Link to key modifiers. We can chain key modifiers
-    20.7 Update directly in in event argument
-    https://vuejs.org/v2/guide/events.html#Key-Modifiers
-
-    21.1 Writing JavaScript Code in the Templates
-    21.2 We can also write simple js statement in interpolation syntax
-    21.3 Increase counter directly in a button
-    21.4 Multiply counter by 2 in interpolation
-    21.5 We can even  write conditional ternary operator
-
-    22.1 Using Two-Way-Binding
-    22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
-
-    23.1 Reacting to Changes with Computed Properties
-    23.2 Create method that prints if it is smaller or greater than 5 and log method
-    23.3 Print method
-    23.4 Create another number in props
-    23.5 Create computed prop with the same logic like in method and log computed
-    23.5.1 Create button that inreases otherCounter
-    23.6 Print computed prop
-    23.7 Data prop is not reactive. We can't do calculation in data property.
-    23.8 Everything stored in computed can be used as a prop of data object
-    23.9 In computed properties in only executes when they need to and it executes methods every time when virtual DOM is updated
-
-    24.1 An Alternative to Computed Properties Watching for Changes
-    24.2 If you need to run some code when the property is updated and which is not solved by a computed property then
-    the watch object is for you
-    It watch when property changes and execute the function with argument the property value
-    24.2.1 Create property that is watched
-    24.3 Create watch object
-    24.4 Watch number and reset after 3 seconds the value of number
-    24.5 Make button the increases watch prop and print it
-
-    25.1 Saving Time with Shorthands
-    25.2 Shorthand for v-on
-    25.3 Make function that executes on click
-    25.4 Shorhand for v-bind
-
-    Docs links:
-    https://vuejs.org/v2/guide/
-    https://vuejs.org/v2/guide/syntax.html
-    https://vuejs.org/v2/guide/events.html
-    https://vuejs.org/v2/guide/computed.html
-    
-*/
+    /** Topics
+     * 1. Vue instance
+     *
+     * 2. El property
+     *
+     * 3. Data property
+     *
+     * 4. Straightforward template syntax. This is also called "Interpolation" or "String Interpolation"
+     *
+     * 5. Directives
+     *
+     * 6. V-on directive. (Create input that will insert as value whatever we type)
+     *
+     * 7. Methods property (Create method that will change the value of title)
+     *
+     * 8. Accessing method or property in vue instance (Exlain how to access methods and props)
+     *
+     * 9. What is  event.target.value? (log event.target.value)
+     *
+     * 10. Execute method in template syntax
+     *
+     * 11. Explain why we don't need this or data when we use variable or methods in template syntax
+     *
+     * 12. We can't use curly braces in any html element attribute
+     *
+     * 13. How to bind dynamically something in html attribute
+     *
+     * 14. Use v-once directive to disable re-rendering
+     *
+     * 15. How to Output Raw HTML
+     *
+     * 16. Let's create button that will increase some number with a function
+     *
+     * 17.1 How to get Get Event Data from the Event Object. Get coordinates on hover.
+     * 17.2. clientX and clientY are default props of event object
+     *
+     * 18.1 Passing your own Arguments with Events
+     * 18.2 $event reserved word
+     *
+     * 19.1 Modifying an Event - with Event Modifiers
+     * 19.2 Copy coordinates paragraph and create a area that the mousemove event will be disabled by a function
+     * 19.3 Create another area and this time use event modifier
+     * 19.4 There a lot modifiers but the second most import is prevent
+     * 19.5 We could also chain them
+     *
+     * 20.1 Listening to Keyboard Events
+     * 20.2 Make variable for the output value
+     * 20.3 Make an input which listens to keyboard event
+     * 20.4 Make some method that print value
+     * 20.5 Make another input and this time add key modifiers for enter and esc
+     * 20.6 Link to key modifiers. We can chain key modifiers
+     * 20.7 Update directly in in event argument
+     * https://vuejs.org/v2/guide/events.html#Key-Modifiers
+     *
+     * 21.1 Writing JavaScript Code in the Templates
+     * 21.2 We can also write simple js statement in interpolation syntax
+     * 21.3 Increase counter directly in a button
+     * 21.4 Multiply counter by 2 in interpolation
+     * 21.5 We can even  write conditional ternary operator
+     *
+     * 22.1 Using Two-Way-Binding
+     * 22.2 Create input that will take the value from a prop and at the same time when we write something to update that prop
+     *
+     * 23.1 Reacting to Changes with Computed Properties
+     * 23.2 Create method that prints if it is smaller or greater than 5 and log method
+     * 23.3 Print method
+     * 23.4 Create another number in props
+     * 23.5 Create computed prop with the same logic like in method and log computed
+     * 23.5.1 Create button that inreases otherCounter
+     * 23.6 Print computed prop
+     * 23.7 Data prop is not reactive. We can't do calculation in data property.
+     * 23.8 Everything stored in computed can be used as a prop of data object
+     * 23.9 In computed properties in only executes when they need to and it executes methods every time when virtual DOM is updated
+     *
+     * 24.1 An Alternative to Computed Properties Watching for Changes
+     * 24.2 If you need to run some code when the property is updated and which is not solved by a computed property then
+     * the watch object is for you
+     * It watch when property changes and execute the function with argument the property value
+     * 24.2.1 Create property that is watched
+     * 24.3 Create watch object
+     * 24.4 Watch number and reset after 3 seconds the value of number
+     * 24.5 Make button the increases watch prop and print it
+     *
+     * 25.1 Saving Time with Shorthands
+     * 25.2 Shorthand for v-on
+     * 25.3 Make function that executes on click
+     * 25.4 Shorhand for v-bind
+     */
 
 </script>
 </body>

@@ -20,11 +20,12 @@
             <!-- 1. Let's we have an element that we want to toggle some class on click -->
             <!-- 2. Dynamic class takes as a key name of the class and as value true or false -->
             <div class="alert"     
-                :class="{'alert-primary': addPrimary}">
-                Toggle class example
+                :class="{'alert-primary': addPrimary}"
+                >Toggle class example
             </div>
-            <button @click="addPrimary = !addPrimary">Toggle Class</button>
-
+            <button
+                class="btn btn-primary" 
+                @click="addPrimary = !addPrimary">Toggle Class</button>
             <!-- IMPORTANT NOTE! It doesn't matter that we have class and then :class again 
                 behind the scenes vuejs will merge all classess we have -->
 
@@ -34,26 +35,37 @@
             <!-- 7. We put the obj in :class -->
             <div
                 class="alert"
-                :class="computedClasses">Change classes from inside
+                @click="addPrimary = !addPrimary"
+                :class="computedClasses"
+                >Change classes from inside. Click me!
             </div>
             
             <hr>
-
+          
             <!-- 8. We can also set the value of prop as class -->
-            <div class="alert" :class="bgColor">Set the class from a property value
+            <div
+                class="alert"
+                :class="bgColor"
+                >Set the class from a property value
             </div>
             <hr>
   
+  <!-- Last time we were here -->
+
             <!-- 10. Make an input and set two-way data binding for that bgColor prop -->
             <p class="form-inline">
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" v-model="bgColor">
             </p>
             <!-- 
                 12. We can also add multiple values by using an array
                 13. Let's add besides the bgColor the obj from 2.
                 14. Show in the inspector classes
              -->
-             <div class="alert">Using multiple value as classes
+             <div
+                class="alert"
+                @click="addPrimary = !addPrimary"
+                :class="[bgColor, {'alert-primary': addPrimary}]"
+                >Using multiple value as classes. Click me!
             </div>
 
             <hr>
@@ -64,31 +76,40 @@
                 20. When we have background-color we must wrap it an quotes cause its
                 not a valid property syntax 
             -->
-            <div class="alert">Style element without using css classes but directly interact with the styles
+            <div
+                class="alert"
+                :style="{'background-color':color, height: height}"
+                >Style element without using css classes but directly interact with the styles
             </div>
             <!-- 21. We can also use it as camel case -->
             <div
                 class="alert"
-             
+                :style="{backgroundColor: color, height}"
                 >Style element without using css classes but directly interact with the styles
             </div>
 
             <!-- 18.1 Make inputs for changing the props -->
             <p class="form-inline">
-                <input type="text" class="form-control" > &nbsp;
-                <input type="text" class="form-control" >
+                <input type="text" class="form-control" v-model="color"> &nbsp;
+                <input type="text" class="form-control" v-model="height">
             </p>      
 
             <hr>
 
             <!-- 23. Like in classes we can outsource the obj in computed props -->
-            <div class="alert">Style element without using css classes but directly interact with the styles
+            <div
+                class="alert"
+                :style="objStyles"
+                >Style element without using css classes but directly interact with the styles
             </div>
 
             <hr>
 
            <!-- 25. And of course we can combine multiply styles with the arr syntax -->
-           <div>Myltiple styles with array
+           <div
+                class=""
+                :style="[objStyles, {width: height}]"
+                >Myltiple styles with array
             </div>
 
         </div>
@@ -111,23 +132,32 @@
             // 17. Make another props color and height
             color: 'greenyellow',
             height: 100
+
+
         },
 
-        computed: {
+        // 4. We make computed object 
+        computed: {    
+            // 5. Returns computed property which is fun
             computedClasses: function(){
+                // 6. that function returns an obj
                 return   {
                     'alert-primary': this.addPrimary
                 }
-            } 
-        }
-
-        // 4. We make computed object 
-
-            // 5. Returns computed property which is fun
-                // 6. that function returns an obj
+            },
 
             // 24. Make another computed prop objStyles and the prev obj there
+            objStyles: function(){
+                return {
+                    'background-color': this.color, 
+                    height: this.height
+                }
+            }
+        },
         
+        methods: {
+                
+        }
     });
 
 /** Topics
@@ -178,9 +208,6 @@
     25. And of course we can combine multiply styles with the arr syntax
     26. IMPORTANT! If we do the styles like this vuejs will automatically
     prefix them to work in all browsers which support vuejs
-
-    Link to docs:
-    https://vuejs.org/v2/guide/class-and-style.html
 */
 
 </script>

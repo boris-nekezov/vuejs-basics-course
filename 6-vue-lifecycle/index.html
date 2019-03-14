@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>Vuejs component</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app" class="container">
+    <div class="row">
+        <div class="col">
+            <h1>{{ heading }}</h1>
+            <button class="btn btn-primary" 
+                @click="heading = 'The DOM was updated'"
+                >Update the DOM</button>
+
+            <button class="btn btn-danger"
+                @click="destroyInstance">Destroy this instance</button>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            heading: 'Vuejs Lifecycle'
+        },
+        
+        beforeCreate: function(){
+            console.log('1. beforeCreate - before create the instance');
+        },
+        
+        created: function(){
+            console.log('2. created - creates the vue instance')
+        },
+        
+        beforeMount: function(){
+            console.log('3. beforeMount - it called right before this template is mounted to the dom');
+        },
+        
+        mounted: function(){
+            console.log('4. mounted - when compiled html is mounted to the DOM and visible mounted is fired');
+        },
+        
+        beforeUpdate: function(){
+            console.log('5. beforeUpdate - this lifecycle hook is fired before we update the DOM');
+        },
+
+        updated: function(){
+            console.log('6. updated - this fires after the DOM is updated');
+        },
+
+        beforeDestroy: function(){
+            console.log('7. beforeDestroy() - this hook is fired right before vue instace is destroyed');
+        },
+
+        destroyed: function(){
+            console.log('destroyed() - fired right after the vue instance is destroyed');
+        },
+
+        methods: {
+            destroyInstance: function(){
+                this.$destroy();
+            }
+        }
+    });
+
+
+/** Topics
+    Vuejs Lyfecycle
+    Vue Lyfecycle starts with the vuejs instance new Vue()
+
+    Then it executes the first lifecycle method to which we can listen
+    
+    1. beforeCreate() - it applies before vue instance is created
+
+    The we pass the date and the events with the object to the vue
+    instance
+    
+    2. created() - then it creates the instance
+
+    After that it compiles the template or el's template
+    Then beforeMount lyfecycle method hook is fired
+    
+    3. beforeMount() - it called right before this template is mounted to the dom
+
+    Replace "el" in the vue instance with the compiled template
+    It means vuejs converted template in html code 
+    And now the compiled html is mounted in the DOM
+    
+    4. mounted() - and now mounted lifecycle hooks is fired
+
+    5. beforeUpdate() - this lifecycle hook is fired before we update the DOM 
+    
+    We re-render the DOM
+    
+    6.updated() - this fires after the DOM is updated
+
+    7. beforeDestroy() - this hook is fired right before vue instace is destroyed
+    
+    8. destroyed() - fired right after the vue instance is destroyed
+
+    We will make method that will destroy the vue intance to demostrate the last
+    two hooks. $destroy only removes the js logic not the DOM. 
+
+    All these methods here can be used to execute some code in the different 
+    phases of the lifecycle once the DOM or part of the DOM was updated
+    we could do this in updated lyfecycle
+
+    
+
+    Link to documentation:
+    https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
+    
+*/
+
+</script>
+</body>
+</html>

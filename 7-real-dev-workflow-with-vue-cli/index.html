@@ -1,0 +1,221 @@
+<html>
+<head>
+    <title>Real development worklflow with Vue CLI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<div id="app" class="container">
+    <div class="row">
+        <div class="col">
+            <h1>{{ heading }}</h1>
+
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            heading: 'Real development workflow with Vue CLI!'
+        },
+
+        methods: {
+        }
+    });
+
+
+/** Topics
+    Until now we worked in a single html file whiched contains
+    all stuff in one html, template, vue instance and styles.
+    This setup works for very small and simple applications.
+    It's not a setup that you will use for medium size.
+
+    We will move the things that we've learned into a different
+    set up. We will dive into making bigger applications with
+    lots of pieces and we need different tools about that stuff.
+
+    So before we dive in let's find out what features and 
+    improvements will have that kind of worflow. 
+    
+    1. Babel (use ES6 code)
+    We need a way to write ES6 code(the next version of js) 
+    and we a tool that compiles ES6 to ES5 so we can use all
+    the cool new features of ES6 and still have code which 
+    runs in the browser. 
+
+    2. Development server 
+    We also need a development server. Why we need one?
+    Eventualy we will serve our application to a real server
+    and therefore we want to test our application on such 
+    circumstances. The file protocol (file://) which we use
+    when we double click on html file does not have the same
+    specifications and features the http protocol has.
+    So we want to access vuejs through http and for that
+    we need a server. Even it will run on our machine we need
+    a server which will understand http to test our app on
+    more realistic circumstances. We also can have a project 
+    that doesn't load all the files on start up. For example
+    lazy loading some elements. Or routing some components
+    dynamically and changing the url. 
+
+    3. Development Workflow
+    What is Development Workflow? Until now our workflow
+    was paste in script imported at the top. This the script
+    to the vuejs package cdn(content delivery network) and 
+    write our vuejs code which is possible because we imported 
+    the script and it works. That is fine for simple apps.
+    In more complex one you might probably have multple script
+    imports. And you might have multiple packages you use.
+    You want to put them together. You want build them. You
+    might want to use ES6. We want to transform our code before
+    uploaded to the server and we need some speciaf features 
+    that development worflow can offer us. There are special 
+    features that we can compile single file templates in vuejs
+    application.
+
+    4. Single File Templates 
+    Single file templates are powerfull altnernative to 
+    using the "el" property. This means that the template 
+    is outsourced into a separate file. The workflow that we 
+    will be using understands such single file templates and
+    it will compile them. Template is transformed to js code
+    and then executable in the browserLater we'll see how they work.
+
+    5. Case-insensitive Component Selectors.
+    This feature provide us more freedom in the way we call
+    the components selectors.
+
+    6. CSS Preprocessors 
+    This workflow also provides compilation of CSS preprocesors
+    such as SASS(SCSS)  
+
+    7. No compiler in the browser. 
+    This workflow is has no the build-in compiler in the browser and
+    make makes VueJS package 30% smaller and faster. This means this 
+    new worflow make the compilation 
+    (transform everything into a javascript code) in before it ships 
+    it in the browser.
+
+    8. Vue CLI
+    What is Vue CLI? Vue CLI is Standard Tooling for Vue.js Development.
+    It fetches Vuejs project templates. 
+
+    !!! WORKSHOP HERE !!!
+    9. Install Vue CLI 3:
+    npm install -g @vue/cli  
+
+    -g - means it install the package globally if you use mac or 
+    linux add sudo in front of it 
+
+    !!! IMPORTANT !!!
+    If you are on Windows using Git Bash with minTTY, the interactive
+    prompts will not work. 
+    You must launch the command as: 
+    winpty vue.cmd create hello-world 
+    If you however want to still use the: 
+    vue create hello-world syntax, 
+    you can alias the command by adding the following line to your
+    ~/.bashrc file and add the following comand.
+
+    alias vue='winpty vue.cmd' 
+    
+    You will need to restart your Git Bash terminal session to pull in
+    the updated bashrc file.
+
+    !!! WORKSHOP HERE !!!
+    10. Create a Vue CLI 3 project using terminal
+    10.1 Create project with following command:
+    vue create $projectName
+
+    run dev mode:
+    npm run serve
+
+    run prod mode:
+    npm run build
+
+    !!! WORKSHOP HERE !!!
+    11. Create a Vue CLI 3 project using vue ui
+    11.1 Create project with Vue Interface
+    vue ui
+
+    
+
+    12. Checkout the folder structure of the installed project
+    
+    12.1 "src" folder is the most important. Here we write our vuejs code
+
+    12.2 .babel.config.js - babel is transpiler allow us to write es6 and
+    then it transpile it in es5
+
+    12.3 public\index.html - the file that is actually get served. This
+    the file will see in the end. This file is edited by vuejs 
+
+    12.4 "dist" folder this is the folder containing all built assests 
+    for production mode.
+    You won't see in development mode because in development mode assets are
+    in the memory of the pc.
+
+    12.5 package.json - file manage all the dependencies. Vue-loader is important
+    since it allows us to use these single file templates
+
+    13. ".vue" file - single file template. This a special kind of file 
+    which gets compiled during the build process so we can ship compiled
+    code to the browser so we don't have to use the "el" property
+    to have our html code converted to a template so we don't have to use the
+    template property to create a string template. But then we a have
+    a third option which allows us to outsource our template on our vuejs code
+    in our vuejs code in separate files which will get compiled to normal js
+    therefore are able to run natively in the browser. You can compile any
+    template any html code to js in the end because they are js object 
+    representations of your html elements. And that is how we want to build 
+    our applications. First don't have to ship the compiler when deploying 
+    our app. And second unlock new features which are not possible to be used 
+    in the native DOM. 
+
+    14. main.js file - that will be the first file which will executed 
+    when the bundle is loaded to index.html file. 
+
+    14.1 All is happening here we create a vue instance here.
+
+    14.2 Import vue - that is how we have access to vuejs
+
+    14.3 "}).$mount("#app");" - select the element that will replace the 
+    vuejs template
+
+    14.4 "render: h => h(App)" - we tell vuejs - instead of render div#app
+    replace it with this template and add to the DOM. That is an ES6
+    arrow function where h is the argument which to be a function then 
+    executed and "render" is provided by vuejs. So vuejs executes the 
+    render function and automatically passes another function the one we 
+    captured here with "h" which then execute. And this function takes
+    a vuejs template to be rendered. This function will automatically
+    render a certain template in the place of this selector .$mount("#app")
+    We load here our "h(App)" from App.vue file
+
+    15. App.vue file - this our actual vue application. .vue files always 
+    follows this structure>
+
+    15.1 We've got <template> at the top, 
+    
+    15.2 Then we've got the script holding our vuejs code for this 
+    template so like a new vue instance kind of.
+
+    15.3 And then we've got some possible styling we want 
+
+    15.4 We can remove the div#app without problem since we have it index.html
+
+    Vue CLI 3 official docs:
+    https://cli.vuejs.org/
+    
+*/
+
+</script>
+</body>
+</html>
