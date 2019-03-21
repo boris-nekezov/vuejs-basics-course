@@ -7,7 +7,7 @@
 
 ##  `public\index.html` - the file that is actually get served. This the file will be shown in the end. This file is edited by vuejs 
 
-##  "dist" folder this is the folder containing all built assests for production mode.
+#  `dist` folder this is the folder containing all built assests for production mode.
 
 ### `NOTE!!!` You won't see in development mode because in development mode assets are in the memory of the pc.
 
