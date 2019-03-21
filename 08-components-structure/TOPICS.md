@@ -1,15 +1,18 @@
+# Pull or download new version of the repository
+
+## github.com/boris-nekezov/vuejs-basics-course
 
 #  1.Folder structure review:
 
 ##  `src` folder is the most important. Here we write our vuejs code
 
-##  `babel.config.js` - babel is transpiler allow us to write es6 and then it transpile it in es5
+##  `babel.config.js` - babel is transpiler which allow us to write es6 and then it transpile it in es5
 
-##  `public\index.html` - the file that is actually get served. This the file will be shown in the end. This file is edited by vuejs 
+##  `public\index.html` - is the file that is actually get served. This the file will be shown at the end. This file is edited by vuejs. 
 
-#  `dist` folder this is the folder containing all built assests for production mode.
+#  `dist` folder - this is the folder containing all builded assests for production mode.
 
-### `NOTE!!!` You won't see in development mode because in development mode assets are in the memory of the pc.
+### `NOTE!!!` You won't see dist folder in development mode because in development mode assets are builded in the memory of the pc.
 
 ##  `package.json` - file manage all the dependencies. Vue-loader is important since it allows us to use these single file templates
 
