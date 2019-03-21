@@ -1,3 +1,10 @@
+# Link to my blog:
+https://borisnekezov.wordpress.com/
+
+# Link to bootstrap:
+https://getbootstrap.com/docs/4.3/components/forms/
+
+
 # Pull or download new version of the repository
 
 ## github.com/boris-nekezov/vuejs-basics-course
