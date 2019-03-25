@@ -1,16 +1,23 @@
 <template>
     <div>
         <h1>{{ title }}</h1>
-    </div>
+    </div>    
 </template>
 
 <script>
 export default {
-    name: 'header',
     data(){
         return {
-            title: 'This is the header!'
+            title: 'This is the header'
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    $border: 3px solid lightgreen;
+
+    div {
+        border: $border;
+    }
+</style>

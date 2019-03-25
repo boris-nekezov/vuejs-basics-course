@@ -72,5 +72,23 @@ https://getbootstrap.com/docs/4.3/components/forms/
 ## Show styles scope and data attibute with dev tools
 ## Show how to write SASS/SCSS
 
+## See AppHeader.vue and AppFooter.vue
+
+## Capsulate the styles with the `scoped` attributes. If you add it the style will apply only within this component file.
+
+### `scope` attribute creates custom data attributes and use it as selector for the elements in the component where it was added.
+
+### Checkout with the inspector the header
+
+```html
+<div data-v-667c54d4=""><h1 data-v-667c54d4="">This is the header</h1></div>
+```
+
+```css
+div[data-v-667c54d4] {
+    border: 3px solid lightgreen;
+}
+```
+
 ## Link to docs: https://vuejs.org/v2/guide/components.html
   

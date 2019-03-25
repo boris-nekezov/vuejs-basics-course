@@ -1,16 +1,23 @@
 <template>
     <div>
         <h1>{{ title }}</h1>
-    </div>
+    </div>    
 </template>
 
 <script>
 export default {
-    name: 'footer',
     data(){
         return {
-            title: 'This is the footer!'
+            title: 'This is the Footer'
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    $border: 3px solid lightblue;
+
+    div {
+        border: $border;
+    }
+</style>
