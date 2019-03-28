@@ -132,3 +132,22 @@ const router = new VueRouter({
 ## Send link to repositories on boris.nekezov@gmail.com
 
 # Make demostration with git how to create repository and add it
+
+## Steps: 
+
+### 1. If don't have github account create one - https://github.com
+### 2. Click repositories 
+### 3. Click new
+### 4. Fill `Repository name` (only small letter with dashes)
+### 5. Click create repository
+### 6. Open your project root folder with git bash
+### 7. Copy there the commands from …or push an existing repository from the command line
+
+```sh
+git remote add origin https://github.com/$gihubname/$nameOfProject.git
+git push -u origin master
+```
+
+
+
+ 
